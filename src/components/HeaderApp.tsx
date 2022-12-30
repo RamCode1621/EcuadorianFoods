@@ -4,7 +4,11 @@ import {Text, View, StyleSheet, ImageBackground} from 'react-native'
 export const HeaderApp = () => {
 	return (
 		<View style={styles.headerContainer}>
-			<ImageBackground source={require('../../assets/images/headerBackground.jpg')} style={styles.headerBackground}>
+			<ImageBackground
+				source={{
+					uri: 'https://res.cloudinary.com/batcode/image/upload/v1672284337/pqtj4frrlgm6tdw3gqz0.jpg',
+				}}
+				style={styles.headerBackground}>
 				<View style={styles.headerContent}>
 					<Text style={styles.titleHeader}>Ecuadorian foods</Text>
 				</View>

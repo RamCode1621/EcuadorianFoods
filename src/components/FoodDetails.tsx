@@ -12,15 +12,27 @@ export const FoodDetails = () => {
 				<Text style={styles.title}>{food.name}</Text>
 				<Text style={styles.group}>{food.group}</Text>
 				<Text style={styles.description}>{food.description}</Text>
+
+				<Text style={styles.subtitleIngredients}>Ingredients:</Text>
+				<View style={styles.contentIngredients}>
+					{food.ingredients.map((ingredient: string, index: number) => {
+						return (
+							<Text key={index} style={styles.ingredient}>
+								{ingredient}
+							</Text>
+						)
+					})}
+				</View>
+
 				<View style={styles.steps}>
 					<Text style={styles.subTitle}>Preparation:</Text>
-					{food.preparation.map((step: {step: number; image: string; description: string}) => {
+					{food.preparation.map((step: {step: number; image: string; description: string}, index: number) => {
 						return (
-							<View style={styles.contentSteps}>
+							<View key={index} style={styles.contentSteps}>
 								<View style={styles.contentSubtitle}>
 									<Text style={styles.numberStep}>Step: {step.step}</Text>
 								</View>
-								<Image source={{uri: step.image}} style={styles.imageStep} />
+								{step.image && <Image source={{uri: step.image}} style={styles.imageStep} />}
 								<View style={styles.contentStepDescription}>
 									<Text style={styles.descriptionStep}>
 										<Text style={styles.boldText}>Description:</Text> {step.description}
@@ -61,9 +73,29 @@ const styles = StyleSheet.create({
 		fontSize: 18,
 		textAlign: 'justify',
 		margin: 20,
-		backgroundColor: 'white',
 		borderRadius: 10,
 		padding: 10,
+		lineHeight: 30,
+		backgroundColor: '#F9d47d',
+	},
+	contentIngredients: {
+		marginTop: 20,
+		backgroundColor: '#F9d47d',
+		borderRadius: 10,
+		padding: 10,
+		width: '90%',
+	},
+	subtitleIngredients: {
+		width: '100%',
+		paddingTop: 5,
+		fontSize: 20,
+		fontWeight: 'bold',
+		marginLeft: 60,
+	},
+	ingredient: {
+		fontSize: 18,
+		textAlign: 'left',
+		marginBottom: 10,
 	},
 	steps: {
 		marginTop: 20,
@@ -99,13 +131,14 @@ const styles = StyleSheet.create({
 	contentStepDescription: {
 		width: '90%',
 		margin: 10,
-		backgroundColor: 'white',
+		backgroundColor: '#F9d47d',
 		borderRadius: 10,
 		padding: 10,
 	},
 	descriptionStep: {
 		fontSize: 18,
 		textAlign: 'justify',
+		lineHeight: 30,
 	},
 	boldText: {
 		fontWeight: 'bold',

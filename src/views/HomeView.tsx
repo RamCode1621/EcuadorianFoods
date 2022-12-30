@@ -3,7 +3,6 @@ import {StyleSheet, View} from 'react-native'
 import {FoodsList} from '../components/FoodsList'
 import {HeaderApp} from '../components/HeaderApp'
 import {Footer} from '../components/Footer'
-import {useSelector} from 'react-redux'
 
 export const HomeView = ({navigation}: {navigation: any}) => {
 	return (
