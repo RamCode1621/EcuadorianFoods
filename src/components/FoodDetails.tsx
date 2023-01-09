@@ -8,10 +8,11 @@ export const FoodDetails = () => {
 	return (
 		<ScrollView>
 			<View style={styles.containerView}>
-				<Image source={{uri: food.imageCard}} style={styles.image} />
+				{food.imageCard && <Image source={{uri: food.imageCard}} style={styles.image} />}
 				<Text style={styles.title}>{food.name}</Text>
 				<Text style={styles.group}>{food.group}</Text>
-				<Text style={styles.description}>{food.description}</Text>
+
+				{food.description && <Text style={styles.description}>{food.description}</Text>}
 
 				<Text style={styles.subtitleIngredients}>Ingredients:</Text>
 				<View style={styles.contentIngredients}>
@@ -25,21 +26,23 @@ export const FoodDetails = () => {
 				</View>
 
 				<View style={styles.steps}>
-					<Text style={styles.subTitle}>Preparation:</Text>
+					{food.preparation.length > 0 && <Text style={styles.subTitle}>Preparation:</Text>}
 					{food.preparation.map((step: {step: number; image: string; description: string}, index: number) => {
-						return (
-							<View key={index} style={styles.contentSteps}>
-								<View style={styles.contentSubtitle}>
-									<Text style={styles.numberStep}>Step: {step.step}</Text>
+						if (step.description) {
+							return (
+								<View key={index} style={styles.contentSteps}>
+									<View style={styles.contentSubtitle}>
+										<Text style={styles.numberStep}>Step: {step.step}</Text>
+									</View>
+									{step.image && <Image source={{uri: step.image}} style={styles.imageStep} />}
+									<View style={styles.contentStepDescription}>
+										<Text style={styles.descriptionStep}>
+											<Text style={styles.boldText}>Description:</Text> {step.description}
+										</Text>
+									</View>
 								</View>
-								{step.image && <Image source={{uri: step.image}} style={styles.imageStep} />}
-								<View style={styles.contentStepDescription}>
-									<Text style={styles.descriptionStep}>
-										<Text style={styles.boldText}>Description:</Text> {step.description}
-									</Text>
-								</View>
-							</View>
-						)
+							)
+						}
 					})}
 				</View>
 			</View>
@@ -68,6 +71,7 @@ const styles = StyleSheet.create({
 	group: {
 		fontSize: 20,
 		fontWeight: 'bold',
+		marginBottom: 20,
 	},
 	description: {
 		fontSize: 18,

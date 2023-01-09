@@ -2,6 +2,7 @@ import React from 'react'
 import {ScrollView, StyleSheet} from 'react-native'
 import {FoodCard} from './FoodCard'
 import {DataFoods} from '../data'
+import {PreparationSteps} from '~/interfaces'
 
 export const FoodsList = ({navigation}: {navigation: any}) => {
 	return (
@@ -16,7 +17,7 @@ export const FoodsList = ({navigation}: {navigation: any}) => {
 							ingredients: food.ingredients,
 							description: food.description,
 							imageCard: food.imageCard,
-							preparation: food.preparation,
+							preparation: food.preparation as PreparationSteps[],
 						}}
 						navigation={navigation}
 					/>

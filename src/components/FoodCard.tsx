@@ -1,8 +1,9 @@
 import React from 'react'
-import {Image, Text, View, StyleSheet, TouchableOpacity, Alert} from 'react-native'
+import {Image, Text, View, StyleSheet, TouchableOpacity} from 'react-native'
 import {PreparationSteps} from '~/interfaces'
 import {useDispatch} from 'react-redux'
 import {addFood} from '~/redux/slice'
+import FastImage from 'react-native-fast-image'
 
 export const FoodCard = ({
 	data,
@@ -32,7 +33,7 @@ export const FoodCard = ({
 					<Text style={styles.foodSubtitle}>{data.group}</Text>
 				</View>
 				<View style={styles.contentImageFood}>
-					<Image source={{uri: data.imageCard}} style={styles.imageFood} />
+					{data.imageCard && <FastImage source={{uri: data.imageCard}} style={styles.imageFood} />}
 				</View>
 			</View>
 		</TouchableOpacity>
@@ -43,7 +44,7 @@ const styles = StyleSheet.create({
 	foodCard: {
 		display: 'flex',
 		flexDirection: 'row',
-		height: 90,
+		height: 85,
 		width: '100%',
 		alignItems: 'center',
 		backgroundColor: 'white',
